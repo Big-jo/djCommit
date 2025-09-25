@@ -4,6 +4,10 @@ transformers>=4.21.0
 torch>=1.12.0
 tokenizers>=0.12.0
 
+# ML and data processing
+scikit-learn>=1.1.0
+tree-sitter>=0.20.0
+
 # Audio synthesis dependencies
 numpy>=1.21.0
 

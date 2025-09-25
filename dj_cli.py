@@ -122,6 +122,13 @@ def test_system():
         else:
             color_print("⚠️  Audio system has issues (fallback will be used)", Colors.YELLOW)
         
+        # Test the ML predictor
+        result = subprocess.run([sys.executable, "test_ml.py"], capture_output=True, text=True)
+        if result.returncode == 0:
+            color_print("✅ ML predictor working!", Colors.GREEN)
+        else:
+            color_print("⚠️  ML predictor has issues (fallback heuristics will be used)", Colors.YELLOW)
+        
         # Test the main script
         result = subprocess.run([sys.executable, "git_dj.py"], capture_output=True, text=True)
         if result.returncode == 0:

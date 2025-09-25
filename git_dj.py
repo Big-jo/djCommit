@@ -48,13 +48,22 @@ def print_header() -> None:
     color_print("🎵 Deep Learning Git Hook DJ 🎵", Colors.CYAN, bold=True)
     color_print("=" * 40, Colors.CYAN)
 
+# Import our ML predictor and config
+try:
+    from ml_predictor import CodeQualityPredictor
+    from ml_config import MLConfig
+    ML_PREDICTOR_AVAILABLE = True
+except ImportError:
+    ML_PREDICTOR_AVAILABLE = False
+    print("Warning: ML predictor not available, using fallback heuristics")
+
+# Fallback imports
 try:
     from transformers import AutoTokenizer, AutoModelForSequenceClassification
     import torch
     TRANSFORMERS_AVAILABLE = True
 except ImportError:
     TRANSFORMERS_AVAILABLE = False
-    print("Warning: transformers not available, using fallback heuristics")
 
 from beep_player import clown_honk, mario_coin, desperado
 
@@ -110,41 +119,22 @@ def analyze_diff_heuristic(diff: str) -> Tuple[str, float]:
 
 def classify_with_ml(diff: str) -> Tuple[str, float]:
     """
-    Classify commit quality using Hugging Face model.
+    Classify commit quality using our ML predictor.
     Falls back to heuristics if model fails or is unavailable.
     """
-    if not TRANSFORMERS_AVAILABLE:
-        return analyze_diff_heuristic(diff)
-    
-    try:
-        # Try to load a code-related model
-        model_name = "microsoft/codebert-base"
-        tokenizer = AutoTokenizer.from_pretrained(model_name)
-        
-        # For now, we'll use a mock classification since we don't have a fine-tuned model
-        # In a real implementation, you'd load a model trained on commit quality
-        
-        # Tokenize the diff (truncate if too long)
-        inputs = tokenizer(
-            diff[:1000],  # Limit input size for performance
-            return_tensors="pt",
-            truncation=True,
-            padding=True,
-            max_length=512
-        )
-        
-        # Mock prediction - in reality you'd run this through your trained model
-        # For now, we'll use the heuristic but with ML-like confidence scores
-        classification, confidence = analyze_diff_heuristic(diff)
-        
-        # Add some ML-like randomness to confidence
-        confidence += random.uniform(-0.1, 0.1)
-        confidence = max(0.1, min(0.95, confidence))
-        
-        return classification, confidence
-        
-    except Exception as e:
-        print(f"ML classification failed: {e}, falling back to heuristics")
+    if ML_PREDICTOR_AVAILABLE:
+        try:
+            # Load configuration
+            config = MLConfig()
+            use_transformer = config.get_effective_model_choice()
+            
+            # Initialize predictor with model selection
+            predictor = CodeQualityPredictor(use_transformer=use_transformer)
+            return predictor.predict(diff)
+        except Exception as e:
+            color_print(f"ML prediction failed: {e}, falling back to heuristics", Colors.YELLOW)
+            return analyze_diff_heuristic(diff)
+    else:
         return analyze_diff_heuristic(diff)
 
 
