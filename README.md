@@ -300,6 +300,15 @@ This project is built on academic research in chiptune synthesis and procedural 
 
 This project is open source. Feel free to use and modify as needed!
 
+## 🚀 Future Roadmap
+
+Exciting features coming soon:
+- **Tree-sitter AST integration** for language-specific code analysis
+- **Advanced ML models** combining AST structure with deep learning
+- **Procedural music generation** based on code complexity and structure
+- **Multi-language support** with framework-aware analysis
+- **Real-time audio feedback** during coding sessions
+
 ## 🎵 Enjoy Your Musical Commits!
 
 Happy coding and may your commits always be stellar! 🚀
