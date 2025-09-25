@@ -33,7 +33,6 @@ env.bak/
 venv.bak/
 
 # IDE
-.vscode/
 .idea/
 *.swp
 *.swo
@@ -80,3 +79,7 @@ beep
 
 # Local development files
 .local
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
+branch_structure.json

@@ -28,7 +28,7 @@ A fun Git pre-commit hook that analyzes your staged code changes using machine l
 ### 1. Clone or Download
 
 ```bash
-git clone <your-repo-url>
+git clone https://github.com/Big-jo/djCommit.git
 cd dj_commit
 ```
 
