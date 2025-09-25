@@ -9,7 +9,7 @@ A fun Git pre-commit hook that analyzes your staged code changes using machine l
   - 🤡 **Bad commits** → Circus/Clown theme ("Entry of the Gladiators" opening)
   - 🪙 **Good commits** → Super Mario Bros. main theme (iconic opening melody)  
   - 🤠 **Stellar commits** → Eagles "Desperado" opening melody
-- **NES-Style Synthesis**: Uses academic research in procedural music generation
+- **NES-Style Synthesis**: Based on academic research in chiptune synthesis and NES APU emulation
 - **Multiple Audio Methods**: Chiptune synthesizer, C beep program, and fallback options
 - **Colorful Terminal Output**: Beautiful colored logs for better user experience
 - **Fallback Heuristics**: Works even without ML dependencies
@@ -54,21 +54,37 @@ cp pre-commit .git/hooks/pre-commit
 ### 4. Test the Installation
 
 ```bash
-# Quick installation (recommended)
+# Super easy installation (recommended)
+python3 setup.py
+
+# Or use the CLI for more control
+python3 dj_cli.py install
+
+# Or use the original install script
 ./install.sh
 
-# Or test manually:
-# Test the beep sounds
-python3 beep_player.py
-
-# Test the full system
-python3 git_dj.py
-
-# Run the complete demo
-python3 demo.py
+# Test the system
+python3 dj_cli.py status
+python3 dj_cli.py demo
 ```
 
 ## 🎮 Usage
+
+### CLI Commands
+
+The new CLI makes everything super easy:
+
+```bash
+# Install everything (recommended for new users)
+python3 setup.py
+
+# Or use the CLI for more control
+python3 dj_cli.py install     # Install everything
+python3 dj_cli.py status      # Check system status
+python3 dj_cli.py demo        # Run interactive demo
+python3 dj_cli.py test        # Test all components
+python3 dj_cli.py uninstall   # Remove git hook
+```
 
 ### Automatic Usage
 The hook runs automatically on every commit:
@@ -234,6 +250,8 @@ Edit the `display_ascii_art()` function in `git_dj.py` to add your own art.
 
 ```
 dj_commit/
+├── dj_cli.py          # Command-line interface (main entry point)
+├── setup.py           # Super simple setup script
 ├── git_dj.py          # Main analysis script with colorful output
 ├── beep_player.py     # Audio feedback functions with colors
 ├── chiptune_synth.py  # NES-style chiptune synthesizer
@@ -241,13 +259,34 @@ dj_commit/
 ├── beep               # Compiled C beep program
 ├── pre-commit         # Git hook script
 ├── requirements.txt   # Python dependencies
-├── install.sh         # Installation script
+├── install.sh         # Original installation script
 ├── demo.py           # Demo script
 ├── .gitignore        # Git ignore file
 ├── LICENSE           # MIT License
 ├── QUICKSTART.md     # Quick start guide
 └── README.md         # This file
 ```
+
+## 📚 Research Foundation
+
+This project is built on academic research in chiptune synthesis and procedural music generation:
+
+### Key Papers
+- **"Endless Loop: A Brief History of Chiptunes"** by Kevin Driscoll and Joshua Diaz (Transformative Works and Cultures, 2009)
+- **"Chiptune: The Ludomusical Shaping of Identity"** (ResearchGate, 2018)
+- **"Signal Processing for Sound Synthesis: Computer-Generated Sounds and Music for All"** (ResearchGate, 2006)
+- **"Automatic Sound Synthesizer Programming: Techniques and Applications"** (ResearchGate, 2016)
+
+### Technical Implementation
+- NES 2A03 APU (Audio Processing Unit) emulation
+- Square wave synthesis with configurable duty cycles
+- Triangle wave generation for bass and melody
+- White noise generation for percussion effects
+- ADSR envelope implementation for realistic sound shaping
+
+### References
+- [NES Technical Documentation](https://wiki.nesdev.com/w/index.php/APU)
+- [Chiptune Synthesis Papers](https://www.semanticscholar.org/topic/Chiptune/1707298)
 
 ## 🤝 Contributing
 

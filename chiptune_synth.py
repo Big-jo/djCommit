@@ -2,7 +2,28 @@
 """
 Chiptune Synthesizer for Git Hook DJ
 Implements NES-style sound chip emulation with square waves, triangle waves, and noise.
-Based on academic research in procedural music generation and chiptune synthesis.
+
+Research Foundation:
+- "Endless Loop: A Brief History of Chiptunes" by Kevin Driscoll and Joshua Diaz
+  (Transformative Works and Cultures, 2009)
+- "Chiptune: The Ludomusical Shaping of Identity" 
+  (ResearchGate, 2018)
+- "Signal Processing for Sound Synthesis: Computer-Generated Sounds and Music for All"
+  (ResearchGate, 2006)
+- "Automatic Sound Synthesizer Programming: Techniques and Applications"
+  (ResearchGate, 2016)
+
+Technical Implementation:
+- NES 2A03 APU (Audio Processing Unit) emulation
+- Square wave synthesis with configurable duty cycles
+- Triangle wave generation for bass and melody
+- White noise generation for percussion effects
+- ADSR envelope implementation for realistic sound shaping
+- Multi-channel mixing with proper normalization
+
+References:
+- NES Technical Documentation: https://wiki.nesdev.com/w/index.php/APU
+- Chiptune Synthesis Papers: https://www.semanticscholar.org/topic/Chiptune/1707298
 """
 
 import numpy as np

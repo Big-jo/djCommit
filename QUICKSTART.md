@@ -9,8 +9,21 @@ Get your Git Hook DJ running in 30 seconds!
 git clone <your-repo-url>
 cd dj_commit
 
-# One-command setup
-./install.sh
+# Super easy one-command setup
+python3 setup.py
+```
+
+## CLI Commands
+
+```bash
+# Check system status
+python3 dj_cli.py status
+
+# Run demo
+python3 dj_cli.py demo
+
+# Uninstall if needed
+python3 dj_cli.py uninstall
 ```
 
 ## Usage
