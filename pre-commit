@@ -1,0 +1,55 @@
+#!/bin/bash
+#
+# Deep Learning Git Hook DJ - Pre-commit Hook
+# This script runs the Git Hook DJ before each commit
+#
+
+# Get the directory where this script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# If we're in .git/hooks, go up two levels to get the project root
+if [[ "$SCRIPT_DIR" == *"/.git/hooks" ]]; then
+    PROJECT_DIR="$(dirname "$(dirname "$SCRIPT_DIR")")"
+else
+    PROJECT_DIR="$(dirname "$SCRIPT_DIR")"
+fi
+
+# Path to the main Git DJ script
+GIT_DJ_SCRIPT="$PROJECT_DIR/git_dj.py"
+
+# Check if the Git DJ script exists
+if [ ! -f "$GIT_DJ_SCRIPT" ]; then
+    echo "❌ Error: git_dj.py not found at $GIT_DJ_SCRIPT"
+    echo "Please ensure the Git Hook DJ is properly installed."
+    exit 1
+fi
+
+# Check if Python 3 is available
+if ! command -v python3 &> /dev/null; then
+    echo "❌ Error: python3 is not installed or not in PATH"
+    exit 1
+fi
+
+# Run the Git Hook DJ
+echo "🎵 Running Deep Learning Git Hook DJ..."
+echo ""
+
+# Execute the Python script
+python3 "$GIT_DJ_SCRIPT"
+
+# Capture the exit code
+EXIT_CODE=$?
+
+# Check if the script ran successfully
+if [ $EXIT_CODE -eq 0 ]; then
+    echo ""
+    echo "✅ Git Hook DJ completed successfully!"
+    echo "🚀 Proceeding with commit..."
+else
+    echo ""
+    echo "❌ Git Hook DJ encountered an error (exit code: $EXIT_CODE)"
+    echo "🛑 Commit blocked. Please fix any issues and try again."
+fi
+
+# Exit with the same code as the Python script
+exit $EXIT_CODE
