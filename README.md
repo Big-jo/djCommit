@@ -5,10 +5,13 @@ A fun Git pre-commit hook that analyzes your staged code changes using machine l
 ## 🎯 Features
 
 - **ML-Powered Analysis**: Uses Hugging Face transformers to analyze commit diffs
-- **Audio Feedback**: Plays different beep sequences based on commit quality:
-  - 🤡 **Bad commits** → Clown honk (two quick beeps)
-  - 🪙 **Good commits** → Mario coin sound (three evenly spaced beeps)  
-  - 🤠 **Stellar commits** → Desperado theme (custom beep sequence)
+- **High-Quality Audio**: Plays authentic chiptune versions of iconic songs:
+  - 🤡 **Bad commits** → Circus/Clown theme ("Entry of the Gladiators" opening)
+  - 🪙 **Good commits** → Super Mario Bros. main theme (iconic opening melody)  
+  - 🤠 **Stellar commits** → Eagles "Desperado" opening melody
+- **NES-Style Synthesis**: Uses academic research in procedural music generation
+- **Multiple Audio Methods**: Chiptune synthesizer, C beep program, and fallback options
+- **Colorful Terminal Output**: Beautiful colored logs for better user experience
 - **Fallback Heuristics**: Works even without ML dependencies
 - **Karma Tracking**: Saves your commit quality history
 - **ASCII Art**: Visual feedback alongside audio
@@ -154,14 +157,34 @@ Your commit quality is tracked in `.git/karma.json`:
 
 ### Customizing Sounds
 
-Edit `beep_player.py` to modify the beep sequences:
+The system uses multiple audio methods for maximum compatibility:
 
-```python
-def custom_sound():
-    # Your custom beep pattern
-    play_beep()
-    time.sleep(0.5)
-    play_beep()
+1. **Chiptune Synthesizer** (`chiptune_synth.py`) - Primary method:
+   - NES-style square waves, triangle waves, and noise
+   - Based on academic research in procedural music generation
+   - Generates authentic 8-bit style audio
+   - Customize melodies by editing the note arrays
+
+2. **C Beep Program** (`beep.c`) - Secondary method:
+   - Edit frequency arrays and durations
+   - Add new sound types
+   - Recompile with `gcc -o beep beep.c -framework AudioToolbox` (macOS)
+
+3. **Python Fallback** - Edit `beep_player.py` for simple beep patterns:
+   ```python
+   def custom_sound():
+       # Your custom beep pattern
+       play_beep()
+       time.sleep(0.5)
+       play_beep()
+   ```
+
+### Testing Audio Generation
+
+Generate test audio files to verify the synthesizer:
+```bash
+python3 test_audio.py
+# Creates: mario_theme.wav, desperado_theme.wav, clown_theme.wav
 ```
 
 ## 🛠️ Troubleshooting
@@ -211,12 +234,18 @@ Edit the `display_ascii_art()` function in `git_dj.py` to add your own art.
 
 ```
 dj_commit/
-├── git_dj.py          # Main analysis script
-├── beep_player.py     # Audio feedback functions
+├── git_dj.py          # Main analysis script with colorful output
+├── beep_player.py     # Audio feedback functions with colors
+├── chiptune_synth.py  # NES-style chiptune synthesizer
+├── beep.c             # C program for high-quality audio
+├── beep               # Compiled C beep program
 ├── pre-commit         # Git hook script
 ├── requirements.txt   # Python dependencies
 ├── install.sh         # Installation script
 ├── demo.py           # Demo script
+├── .gitignore        # Git ignore file
+├── LICENSE           # MIT License
+├── QUICKSTART.md     # Quick start guide
 └── README.md         # This file
 ```
 

@@ -1,0 +1,79 @@
+# Deep Learning Git Hook DJ - Git Ignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Audio files (generated during testing)
+*.wav
+*.mp3
+*.mid
+*.midi
+
+# Karma tracking
+.git/karma.json
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# Test files (keep the system clean)
+test_*.py
+*_test.py
+demo_*.py
+temp_*.py
+
+# Compiled C programs (will be compiled during installation)
+beep
+*.o
+*.exe
+
+# Backup files
+*.bak
+*.backup
+*~

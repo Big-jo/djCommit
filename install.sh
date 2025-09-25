@@ -27,6 +27,23 @@ fi
 echo "🔧 Making scripts executable..."
 chmod +x git_dj.py beep_player.py pre-commit
 
+# Compile C beep program
+echo "🔨 Compiling C beep program..."
+if command -v gcc &> /dev/null; then
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        # macOS
+        gcc -o beep beep.c -framework AudioToolbox
+    else
+        # Linux/other
+        gcc -o beep beep.c
+    fi
+    chmod +x beep
+    echo "✅ C beep program compiled successfully!"
+else
+    echo "⚠️  Warning: gcc not found. C beep program not compiled."
+    echo "   The system will use fallback audio methods."
+fi
+
 # Copy the pre-commit hook
 echo "📋 Installing pre-commit hook..."
 cp pre-commit .git/hooks/pre-commit
